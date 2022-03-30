@@ -1,7 +1,6 @@
 from typing import List
 from uuid import uuid4
 from utils import draw_gant
-from pprint import pprint
 from utils import calc_start_time, calc_start_and_end_data
 
 Matrix = List[List[int]]
@@ -77,5 +76,3 @@ if __name__ == "__main__":
         [3, 2, 4],
         [5, 8, 9],
     ]
-
-    pprint(petrov(data))
