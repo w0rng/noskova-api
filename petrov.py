@@ -1,6 +1,7 @@
 from typing import List
 from uuid import uuid4
 from utils import draw_gant
+from pprint import pprint
 
 Matrix = List[List[int]]
 
@@ -22,7 +23,7 @@ def sort_data_on_sum(data: Matrix, summ: List[int]):
 
     new_data = []
     for i, _ in summ:
-        new_data.append(data[i])
+        new_data.append(data[i].copy())
 
     return new_data, [i for i, _ in summ]
 
@@ -45,6 +46,8 @@ def calc_start_time(data: Matrix) -> Matrix:
 
 def calc_start_and_end_data(data: Matrix, data_with_start: Matrix) -> Matrix:
     result = data_with_start.copy()
+
+    pprint(data)
 
     for i in range(len(data)):
         for j in range(len(data[0])):
@@ -87,3 +90,13 @@ def petrov(data: Matrix):
         "matrix_with_line": result,
         "image": name,
     }
+
+
+if __name__ == "__main__":
+    data = [
+        [1, 2, 3],
+        [3, 2, 4],
+        [5, 8, 9],
+    ]
+
+    pprint(petrov(data))
