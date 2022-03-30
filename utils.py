@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import random
+from typing import List
 
 
 def draw_gant(data: list, name: str, size: int = 1):
@@ -23,7 +24,7 @@ def draw_gant(data: list, name: str, size: int = 1):
     plt.savefig(f"{name}.png")
 
 
-def calc_lines(data, order):
+def calc_lines(data: List[List[int]], order: List[int]):
     new_data = []
     for i in order:
         new_data.append(data[i])
