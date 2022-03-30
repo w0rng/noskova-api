@@ -1,6 +1,6 @@
 """Алгоритм джонсана"""
 
-from gantt import draw_gant
+from utils import draw_gant, calc_lines
 from uuid import uuid4
 from typing import Dict, List, Any
 
@@ -43,19 +43,7 @@ def dzonsan(data: List) -> Dict[str, Any]:
 
     result = [i[0] for i in sorted(result, key=lambda x: x[1])]
 
-    gantt = [[sum(data[result[0]][:i]) for i in range(1, len(result) + 1)]]
-    for machine in result[1:]:
-        gantt.append([data[machine][i] + gantt[-1][i] for i in range(len(result))])
-
-    new_data = []
-    for i in result:
-        new_data.append(data[i])
-
-    gantt_with_line = []
-    for machine in range(len(data)):
-        gantt_with_line.append(
-            [(gantt[machine][i] - new_data[machine][i], new_data[machine][i]) for i in range(len(result))]
-        )
+    gantt_with_line = calc_lines(data, result)
 
     name = str(uuid4())
     draw_gant(gantt_with_line, name)
