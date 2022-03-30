@@ -61,6 +61,7 @@ def dzonsan(data: List) -> Dict[str, Any]:
     draw_gant(gantt_with_line, name)
     return {
         "result": result,
+        "matrix_with_line": gantt_with_line,
         "image": name,
     }
 
