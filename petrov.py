@@ -10,7 +10,7 @@ def calc_sum_without_line(data: Matrix, num_line: int):
     for i, row in enumerate(data):
         if i == num_line:
             continue
-        for j, element in enumerate(data):
+        for j, element in enumerate(row):
             result[j] += element
 
     return result
