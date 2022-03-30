@@ -2,6 +2,7 @@ from typing import List
 from uuid import uuid4
 from utils import draw_gant
 from pprint import pprint
+from utils import calc_start_time, calc_start_and_end_data
 
 Matrix = List[List[int]]
 
@@ -26,34 +27,6 @@ def sort_data_on_sum(data: Matrix, summ: List[int]):
         new_data.append(data[i].copy())
 
     return new_data, [i for i, _ in summ]
-
-
-def calc_start_time(data: Matrix) -> Matrix:
-    copy_data = data.copy()
-
-    for i in range(1, len(data[0])):
-        copy_data[0][i] += copy_data[0][i - 1]
-
-    for i in range(1, len(data)):
-        copy_data[i][0] += copy_data[i - 1][0]
-
-    for i in range(1, len(data)):
-        for j in range(1, len(data[0])):
-            copy_data[i][j] += max(copy_data[i - 1][j], copy_data[i][j - 1])
-
-    return copy_data
-
-
-def calc_start_and_end_data(data: Matrix, data_with_start: Matrix) -> Matrix:
-    result = data_with_start.copy()
-
-    pprint(data)
-
-    for i in range(len(data)):
-        for j in range(len(data[0])):
-            result[i][j] = (result[i][j], data[i][j])
-
-    return result
 
 
 def petrov(data: Matrix):

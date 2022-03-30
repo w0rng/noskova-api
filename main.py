@@ -23,3 +23,7 @@ def petrov_url():
 @cross_origin()
 def image(name):
     return send_file(f"{name}.png")
+
+
+if __name__ == "__main__":
+    app.run()

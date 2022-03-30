@@ -3,6 +3,7 @@
 from utils import draw_gant, calc_lines
 from uuid import uuid4
 from typing import Dict, List, Any
+from utils import calc_start_time, calc_start_and_end_data
 
 
 def dzonsan(data: List) -> Dict[str, Any]:
@@ -43,13 +44,18 @@ def dzonsan(data: List) -> Dict[str, Any]:
 
     result = [i[0] for i in sorted(result, key=lambda x: x[1])]
 
-    gantt_with_line = calc_lines(data, result)
+    new_data = []
+    for i in result:
+        new_data.append(data[i].copy())
+
+    new_data = calc_start_time(new_data)
+    new_data = calc_start_and_end_data(data, new_data)
 
     name = str(uuid4())
-    draw_gant(gantt_with_line, name)
+    draw_gant(new_data, name)
     return {
         "result": result,
-        "matrix_with_line": gantt_with_line,
+        "matrix_with_line": new_data,
         "image": name,
     }
 
