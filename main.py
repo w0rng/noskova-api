@@ -1,10 +1,15 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, send_from_directory
 from dzonsan import dzonsan
 from petrov import petrov
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="", static_folder="site")
 CORS(app)
+
+
+@app.route("/", methods=["GET"])
+def main():
+    return send_file("site/index.html")
 
 
 @app.route("/dzonsan", methods=["POST"])
@@ -26,4 +31,4 @@ def image(name):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
