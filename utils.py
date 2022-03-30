@@ -36,7 +36,7 @@ def calc_lines(data: List[List[int]], order: List[int]):
     gantt_with_line = []
     for machine in range(len(data)):
         gantt_with_line.append(
-            [(gantt[machine][i] - new_data[machine][i], new_data[machine][i]) for i in range(len(result))]
+            [(gantt[machine][i] - new_data[machine][i], new_data[machine][i]) for i in range(len(order))]
         )
 
     return gantt_with_line
