@@ -24,6 +24,20 @@ def calc_start_time(data: Matrix) -> Matrix:
 
 def calc_start_and_end_data(data: Matrix, data_with_start: Matrix) -> Matrix:
     result = data_with_start.copy()
+    print(data)
+    print(data_with_start)
+
+    a = [
+        [1, 1, 1, 1],
+        [1, 2, 1, 1],
+        [1, 1, 2, 1],
+    ]
+
+    b = [
+        [1, 2, 3, 4],
+        [2, 3, 4, 6],
+        [3, 5, 6, 7],
+    ]
 
     for i in range(len(data)):
         for j in range(len(data[0])):

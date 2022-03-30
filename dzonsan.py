@@ -45,8 +45,11 @@ def dzonsan(data: List) -> Dict[str, Any]:
     result = [i[0] for i in sorted(result, key=lambda x: x[1])]
 
     new_data = []
-    for i in result:
-        new_data.append(data[i].copy())
+    for row in data:
+        tmp_row = []
+        for i in result:
+            tmp_row.append(row[i])
+        new_data.append(tmp_row)
 
     new_data = calc_start_time(new_data)
     new_data = calc_start_and_end_data(data, new_data)

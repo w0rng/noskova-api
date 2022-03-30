@@ -23,8 +23,11 @@ def sort_data_on_sum(data: Matrix, summ: List[int]):
     summ.sort(key=lambda x: x[1])
 
     new_data = []
-    for i, _ in summ:
-        new_data.append(data[i].copy())
+    for row in data:
+        tmp_row = []
+        for i, _ in summ:
+            tmp_row.append(row[i])
+        new_data.append(tmp_row)
 
     return new_data, [i for i, _ in summ]
 
@@ -46,13 +49,16 @@ def petrov(data: Matrix):
         data_start_time_sum_1[-1][-1] <= data_start_time_sum_2[-1][-1]
         and data_start_time_sum_1[-1][-1] <= data_start_time_difference[-1][-1]
     ):
+        data, _ = sort_data_on_sum(data, sum_1)
         result = calc_start_and_end_data(data, data_start_time_sum_1)
     elif (
         data_start_time_sum_2[-1][-1] <= data_start_time_sum_1[-1][-1]
         and data_start_time_sum_2[-1][-1] <= data_start_time_difference[-1][-1]
     ):
+        data, _ = sort_data_on_sum(data, sum_2)
         result = calc_start_and_end_data(data, data_start_time_sum_2)
     else:
+        data, _ = sort_data_on_sum(data, difference_sum)
         result = calc_start_and_end_data(data, data_start_time_difference)
 
     name = str(uuid4())
