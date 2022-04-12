@@ -51,8 +51,8 @@ def dzonsan(data: List) -> Dict[str, Any]:
             tmp_row.append(row[i])
         new_data.append(tmp_row)
 
-    new_data = calc_start_time(new_data)
-    new_data = calc_start_and_end_data(data, new_data)
+    data_with_start = calc_start_time(new_data)
+    new_data = calc_start_and_end_data(new_data, data_with_start)
 
     name = str(uuid4())
     draw_gant(new_data, name)

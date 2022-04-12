@@ -1,13 +1,14 @@
 import matplotlib.pyplot as plt
 import random
 from typing import List
+from copy import deepcopy
 
 
 Matrix = List[List[int]]
 
 
 def calc_start_time(data: Matrix) -> Matrix:
-    copy_data = data.copy()
+    copy_data = deepcopy(data)
 
     for i in range(1, len(data[0])):
         copy_data[0][i] += copy_data[0][i - 1]
