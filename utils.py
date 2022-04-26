@@ -49,8 +49,14 @@ def draw_gant(data: list, name: str, size: int = 1):
         g = random.random()
         color = (r, g, b)
         for machine in range(len(data)):
-            gnt.broken_barh([data[machine][num_part]], ((machine + 1) * 2 - size / 2, size), facecolors=color)
+            gnt.broken_barh(
+                [data[machine][num_part]],
+                ((machine + 1) * 2 - size / 2, size),
+                facecolors=color,
+                label=f"Деталь {num_part+1}" if machine == 0 else None,
+            )
 
+    plt.legend(bbox_to_anchor=(1, 0.25))
     plt.savefig(f"{name}.png")
 
 
