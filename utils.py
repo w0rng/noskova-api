@@ -6,6 +6,10 @@ from copy import deepcopy
 
 Matrix = List[List[int]]
 
+import matplotlib
+
+matplotlib.use("SVG")
+
 
 def calc_start_time(data: Matrix) -> Matrix:
     copy_data = deepcopy(data)
